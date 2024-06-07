@@ -14,13 +14,9 @@
 - **Git** ![Git](https://img.shields.io/badge/-Git-black?style=flat&logo=git&link=https://github.com/Quananhle)
 - **GitHub** ![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)
 
-# **Servicio de Voz con Angular y CRUD** 🎙️
+# **Servicio Cognitivo - ComputerVision** 🎙️
 
-## **Funcionalidades principales** 🚀 
 
-- **Reconocimiento de voz**: Utiliza la API de reconocimiento de voz del navegador para interpretar los comandos hablados por el usuario.
-- **Interacción con la aplicación**: Permite al usuario realizar acciones CRUD dentro de la aplicación utilizando comandos de voz predefinidos.
-- **Integración con componentes de Angular**: Se integra fácilmente con los componentes de Angular para proporcionar una experiencia de usuario fluida.
 
 ## Instalación 🛠️
 
