@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,25 +12,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ItemListComponent } from './item-list/item-list.component';
-import { ItemFormComponent } from './item-form/item-form.component';
-import { ItemService } from './item.service';
+import { ComputerVisionService } from './modules/service/computer-vision.service';
+import { AppRoutingModule } from './app-routing.module';
+import { ComputerVisionComponent } from './modules/pages/computer-vision/computer-vision.component';
 
-const appRoutes: Routes = [
-  { path: 'items', component: ItemListComponent },
-  { path: '', redirectTo: '/items', pathMatch: 'full' }
-];
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemListComponent,
-    ItemFormComponent
-  ],
+    ComputerVisionComponent],
   imports: [
+    ToastrModule.forRoot(),
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -39,10 +37,11 @@ const appRoutes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    FormsModule,  // Añadir FormsModule
-    RouterModule.forRoot(appRoutes)
+    FormsModule
   ],
-  providers: [ItemService],
+  providers: [
+    ComputerVisionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
