@@ -17,12 +17,16 @@ import { AppComponent } from './app.component';
 import { ComputerVisionService } from './modules/service/computer-vision.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ComputerVisionComponent } from './modules/pages/computer-vision/computer-vision.component';
+import { NavComponent } from './modules/pages/nav/nav.component';
+import { ComputerGaleryComponent } from './modules/pages/computer-galery/computer-galery.component';
 
 
 
 @NgModule({
   declarations: [
+    NavComponent,
     AppComponent,
+    ComputerGaleryComponent,
     ComputerVisionComponent],
   imports: [
     ToastrModule.forRoot(),
