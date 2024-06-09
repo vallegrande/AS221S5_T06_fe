@@ -1,1 +1,40 @@
-<p>computer-vision works!</p>
+<div class="container">
+    <div class="input-group">
+      <input type="text" [(ngModel)]="imageUrlInput" placeholder="Ingrese URL de la imagen" />
+      <button (click)="loadImage()">Cargar Imagen</button>
+    </div>
+  
+    <div class="content" *ngIf="imageLoaded">
+      <div class="image-section">
+        <div class="image-container">
+          <img [src]="imageUrl" alt="Loaded image" />
+        </div>
+        <div class="image-details">
+          <h3>Image Description</h3>
+          <p>{{ imageDescription }}</p>
+        </div>
+      </div>
+  
+      <div class="parameters-section">
+        <h3>Tags</h3>
+        <ul>
+          <li *ngFor="let tag of tags">{{ tag }}</li>
+        </ul>
+  
+        <h3>Content Scores</h3>
+        <ul>
+          <li>Adult Score: {{ adultScore }}</li>
+          <li>Racy Score: {{ racyScore }}</li>
+          <li>Gore Score: {{ goreScore }}</li>
+        </ul>
+  
+        <h3>Content Flags</h3>
+        <ul>
+          <li>Adult Content: {{ adultContent ? 'Yes' : 'No' }}</li>
+          <li>Racy Content: {{ racyContent ? 'Yes' : 'No' }}</li>
+          <li>Gory Content: {{ goryContent ? 'Yes' : 'No' }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
