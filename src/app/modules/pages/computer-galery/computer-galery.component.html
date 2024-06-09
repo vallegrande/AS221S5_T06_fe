@@ -1,1 +1,47 @@
-<p>computer-galery works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="computer-galery.component.css"> <!-- Enlace al archivo CSS externo -->
+  </head>
+<body>
+
+  <div class="container">
+    <h1>Lista Completa</h1>
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchText" class="search" placeholder="Buscar...">
+        <button (click)="filterConsultas()" class="search-button">Buscar</button>
+    </div>
+    <button (click)="loadConsultas()" class="icon-button">
+        <img src="assets/icons/load-icon.png" alt="Cargar">
+    </button>
+
+    <div class="card-container">
+        <div *ngFor="let consulta of filteredConsultas" class="card">
+            <img [src]="consulta.imageUrl" alt="{{ consulta.title }}" class="card-image">
+            <h3>{{ consulta.title }}</h3>
+            <p>{{ consulta.description }}</p>
+            <button (click)="editConsulta(consulta)" class="button">Editar</button>
+            <button (click)="deleteConsulta(consulta.id)" class="button">Eliminar</button>
+        </div>
+    </div>
+
+    <div *ngIf="selectedConsulta" class="edit-form">
+        <h2>Editar Descripción</h2>
+        <form (ngSubmit)="updateConsulta()">
+            <label for="description">Descripción</label>
+            <textarea id="description" [(ngModel)]="selectedConsulta.description" name="description" required></textarea>
+            <button type="submit" class="button">Actualizar</button>
+            <button type="button" (click)="cancelEdit()" class="button">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+
+    <script src="computer-galery.component.ts"></script>
+</body>
+</html>
+
+
+
