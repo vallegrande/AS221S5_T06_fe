@@ -237,3 +237,45 @@ h1 {
   background-color: #C9302C;
 }
 
+.filter-container {
+  display: flex;
+  justify-content: space-around; /* Distribución equitativa de los elementos */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-label {
+  display: flex; /* Para alinear el checkbox y el texto */
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.filter-label input[type="checkbox"] {
+  margin-right: 8px; /* Espacio entre el checkbox y el texto */
+  cursor: pointer;
+}
+
+/* Estilos para los checkboxes */
+.filter-label input[type="checkbox"]::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-label input[type="checkbox"]:checked::before {
+  background-color: #4CAF50; /* Color de fondo cuando está seleccionado */
+  border-color: #4CAF50; /* Color del borde cuando está seleccionado */
+}
+
+/* Estilos para el texto del label */
+.filter-label span {
+  vertical-align: middle;
+}
+

@@ -7,8 +7,12 @@ interface Consulta {
   title: string;
   description: string;
   imageUrl: string;
-  tags: string; // Cambiado a string
+  tags: string;
+  adultContent: boolean;
+  racyContent: boolean;
+  goryContent: boolean;
 }
+
 @Component({
   selector: 'app-computer-galery',
   templateUrl: './computer-galery.component.html',
@@ -21,8 +25,11 @@ export class ComputerGaleryComponent implements OnInit {
   selectedConsulta: Consulta | null = null;
   darkMode: boolean = false;
   isLoading: boolean = false;
-  editing: boolean = false; // Controla el estado de edición del formulario
+  editing: boolean = false;
 
+  showAdultContent: boolean = true; // Mostrar contenido para adultos
+  showRacyContent: boolean = true;  // Mostrar contenido subido de tono
+  showGoryContent: boolean = true;  // Mostrar contenido sangriento
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +43,7 @@ export class ComputerGaleryComponent implements OnInit {
       .subscribe(
         data => {
           this.consultas = data;
-          this.filteredConsultas = this.consultas;
+          this.applyFilters(); // Aplicar filtros inicialmente al cargar las consultas
           this.isLoading = false;
         },
         error => {
@@ -46,14 +53,13 @@ export class ComputerGaleryComponent implements OnInit {
       );
   }
 
-  filterConsultas(): void {
-    if (this.searchText) {
-      this.filteredConsultas = this.consultas.filter(consulta =>
-        consulta.description.toLowerCase().includes(this.searchText.toLowerCase())
-      );
-    } else {
-      this.filteredConsultas = this.consultas;
-    }
+  applyFilters(): void {
+    this.filteredConsultas = this.consultas.filter(consulta =>
+      (this.showAdultContent || !consulta.adultContent) &&
+      (this.showRacyContent || !consulta.racyContent) &&
+      (this.showGoryContent || !consulta.goryContent) &&
+      (this.searchText.trim() === '' || consulta.description.toLowerCase().includes(this.searchText.toLowerCase()))
+    );
   }
 
   editConsulta(consulta: Consulta): void {
@@ -72,7 +78,7 @@ export class ComputerGaleryComponent implements OnInit {
           const index = this.consultas.findIndex(c => c.id === updatedConsulta.id);
           if (index !== -1) {
             this.consultas[index].description = updatedConsulta.description;
-            this.filteredConsultas = [...this.consultas];
+            this.applyFilters(); // Aplicar filtros después de la actualización
           }
           this.selectedConsulta = null;
           Swal.fire({
@@ -101,7 +107,7 @@ export class ComputerGaleryComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, eliminar',
+      confirmButtonText: 'Sí, eliminar, por favor',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -109,7 +115,7 @@ export class ComputerGaleryComponent implements OnInit {
           .subscribe(
             () => {
               this.consultas = this.consultas.filter(consulta => consulta.id !== id);
-              this.filteredConsultas = this.consultas;
+              this.applyFilters(); // Aplicar filtros después de la eliminación
               this.cancelEdit();
               Swal.fire({
                 icon: 'success',
