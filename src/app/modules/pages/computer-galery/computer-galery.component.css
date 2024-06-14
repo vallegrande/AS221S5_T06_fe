@@ -1,3 +1,4 @@
+/* Estilos generales para el cuerpo y el contenedor principal */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #F9F6FD;
@@ -6,18 +7,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 100vh;
-  padding-top: 50px;
+  min-height: 100vh;
+  padding-top: 50px; /* Espaciado superior para evitar solapamiento con la barra de navegación */
+}
+
+.dark-mode {
+  background-color: #333;
+  color: #fff;
 }
 
 .container {
-  text-align: center;
+  width: 90%; /* Ancho del contenedor principal ajustado */
+  max-width: 1200px; /* Ancho máximo para limitar la expansión en pantallas grandes */
+  margin: 20px auto; /* Centrar el contenedor y dar espacio alrededor */
 }
 
 h1 {
   margin-bottom: 20px;
+  text-align: center; /* Alineación central del título */
 }
 
+/* Estilos para el contenedor de búsqueda */
 .search-container {
   display: flex;
   justify-content: center;
@@ -26,113 +36,180 @@ h1 {
 }
 
 .search {
-  padding: 10px;
+  padding: 12px; /* Mayor padding para mejorar la interacción */
   font-size: 1rem;
   width: 300px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
 }
 
 .search-button {
-  padding: 10px 20px;
+  padding: 12px 24px; /* Aumento del padding para botón más grande */
   font-size: 1rem;
-  color: #ffffff;
+  color: #fff;
   background-color: #4CAF50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave de color de fondo */
 }
 
 .search-button:hover {
-  background-color: #45A049;
+  background-color: #45A049; /* Color más oscuro al pasar el mouse */
 }
 
-.icon-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.icon-button img {
-  width: 24px;
-  height: 24px;
-}
-
-.icon-button:hover img {
-  filter: brightness(1.2);
-}
-
+/* Estilos para el contenedor de tarjetas */
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px;
 }
 
 .card {
+  position: relative;
   background-color: #FFFFFF;
-  border: 1px solid #b95050;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Bordes más redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más suave */
   width: calc(30% - 20px); /* Tres tarjetas por fila con espaciado */
   margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Efecto de levantamiento al pasar el mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.card-image-container {
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .card-image {
   width: 100%;
   height: auto;
-  margin-bottom: 10px;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.card h3 {
-  margin-top: 0;
-  font-size: 1rem;
+.card-image:hover {
+  transform: scale(1.05); /* Zoom suave al pasar el mouse */
 }
 
+.card-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.card:hover .card-details {
+  opacity: 1;
+}
+
+.card h3,
 .card p {
-  font-size: 0.875rem;
-  color: #58555E;
+  margin: 0;
+  padding: 5px 0;
+  text-align: center; /* Alineación central de título y texto */
 }
 
+.card button {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #45A049; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilos para el overlay de detalles */
+.card-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: 1; /* Ajusta el z-index si es necesario */
+}
+
+.details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegúrate de que el overlay tenga un z-index alto */
+}
+
+/* Estilos para el formulario de edición */
 .edit-form {
   background-color: #FFFFFF;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .edit-form h2 {
   margin-top: 0;
+  text-align: center;
 }
 
 .edit-form label {
   display: block;
   margin: 10px 0 5px;
+  text-align: left;
 }
 
-.edit-form textarea {
-  width: 100%;
+.edit-form textarea,
+.edit-form input {
+  width: calc(100% - 22px); /* Ajuste para el borde */
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .edit-form button {
-  padding: 10px 20px;
+  padding: 12px 24px; /* Aumento del padding para botón más grande */
   font-size: 1rem;
-  color: #ffffff;
+  color: #fff;
   background-color: #4CAF50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .edit-form button[type="button"] {
@@ -147,42 +224,16 @@ h1 {
   background-color: #45A049;
 }
 
-/* Estilos actualizados para los botones de editar y eliminar */
-.card button {
-  padding: 10px 15px;
-  font-size: 0.875rem;
-  color: #ffffff;
-  background-color: #5BC0DE;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 5px;
-}
-
 .card button.delete {
   background-color: #D9534F;
+  transition: background-color 0.3s ease;
 }
 
 .card button:hover {
-  background-color: #a9c449;
+  background-color: #C9302C;
 }
 
 .card button.delete:hover {
   background-color: #C9302C;
 }
 
-/* Funcionalidad del botón de búsqueda */
-.filter-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: #FFA500;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.filter-button:hover {
-  background-color: #FFD700;
-}
