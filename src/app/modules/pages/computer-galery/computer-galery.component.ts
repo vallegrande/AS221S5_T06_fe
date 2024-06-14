@@ -27,7 +27,7 @@ export class ComputerGaleryComponent implements OnInit {
   }
 
   loadConsultas(): void {
-    this.http.get<Consulta[]>('http://localhost:8085/computer-vision/list').subscribe(data => {
+    this.http.get<Consulta[]>('https://potential-space-acorn-p46r95vpqr7h7wpq-8085.app.github.dev/computer-vision/list').subscribe(data => {
       this.consultas = data;
       this.filteredConsultas = this.consultas;
     });
@@ -49,7 +49,7 @@ export class ComputerGaleryComponent implements OnInit {
 
   updateConsulta(): void {
     if (this.selectedConsulta) {
-      this.http.put(`http://localhost:8085/computer-vision/update/${this.selectedConsulta.id}`, this.selectedConsulta)
+      this.http.put(`https://potential-space-acorn-p46r95vpqr7h7wpq-8085.app.github.dev/computer-vision/update/${this.selectedConsulta.id}`, this.selectedConsulta)
         .subscribe(() => {
           const index = this.consultas.findIndex(c => c.id === this.selectedConsulta!.id);
           if (index !== -1) {
@@ -62,7 +62,7 @@ export class ComputerGaleryComponent implements OnInit {
   }
 
   deleteConsulta(id: number): void {
-    this.http.delete(`http://localhost:8085/computer-vision/delete/${id}`).subscribe(() => {
+    this.http.delete(`https://potential-space-acorn-p46r95vpqr7h7wpq-8085.app.github.dev/computer-vision/delete/${id}`).subscribe(() => {
       this.consultas = this.consultas.filter(consulta => consulta.id !== id);
       this.filteredConsultas = this.consultas;
     });

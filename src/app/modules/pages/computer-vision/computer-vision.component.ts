@@ -24,7 +24,7 @@ export class ComputerVisionComponent {
   loadImage() {
     if (this.imageUrlInput) {
       const requestBody = { imageUrl: this.imageUrlInput };
-      this.http.post('http://localhost:8085/computer-vision/analyze', requestBody)
+      this.http.post('https://potential-space-acorn-p46r95vpqr7h7wpq-8085.app.github.dev/computer-vision/analyze', requestBody)
         .subscribe((response: any) => {
           this.imageUrl = this.imageUrlInput;
           this.imageDescription = response.description;
