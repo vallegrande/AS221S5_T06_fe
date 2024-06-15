@@ -39,7 +39,7 @@ export class ComputerGaleryComponent implements OnInit {
 
   loadConsultas(): void {
     this.isLoading = true;
-    this.http.get<Consulta[]>('https://didactic-tribble-9rx9577wgvjc7xq6-8085.app.github.dev/computer-vision/list')
+    this.http.get<Consulta[]>('https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/list')
       .subscribe(
         data => {
           this.consultas = data;
@@ -71,7 +71,7 @@ export class ComputerGaleryComponent implements OnInit {
     if (this.selectedConsulta) {
       const updatedConsulta = { ...this.selectedConsulta };
 
-      this.http.put(`https://didactic-tribble-9rx9577wgvjc7xq6-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
+      this.http.put(`https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
         description: updatedConsulta.description
       }).subscribe(
         () => {
@@ -111,7 +111,7 @@ export class ComputerGaleryComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.delete(`https://didactic-tribble-9rx9577wgvjc7xq6-8085.app.github.dev/computer-vision/delete/${id}`)
+        this.http.delete(`https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/delete/${id}`)
           .subscribe(
             () => {
               this.consultas = this.consultas.filter(consulta => consulta.id !== id);

@@ -1,40 +1,47 @@
 <div class="container">
-    <div class="input-group">
-      <input type="text" [(ngModel)]="imageUrlInput" placeholder="Ingrese URL de la imagen" />
-      <button (click)="loadImage()">Cargar Imagen</button>
+  <div class="input-group">
+    <input type="text" [(ngModel)]="imageUrlInput" placeholder="Ingrese URL de la imagen" />
+    <button (click)="loadImage()" [disabled]="loading">
+      <ng-container *ngIf="!loading; else spinnerTemplate">
+        Agregar
+      </ng-container>
+      <ng-template #spinnerTemplate>
+        <div class="spinner"></div>
+      </ng-template>
+    </button>
+  </div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div class="content" *ngIf="imageLoaded">
+    <div class="image-section">
+      <div class="image-container" [class.blurred]="isBlurred">
+        <img [src]="imageUrl" alt="Loaded image" />
+        <i *ngIf="isBlurred" class="fa fa-eye-slash"></i>
+      </div>
+      <div class="image-details">
+        <h3>Descripción de la imagen</h3>
+        <p>{{ imageDescription }}</p>
+      </div>
     </div>
-  
-    <div class="content" *ngIf="imageLoaded">
-      <div class="image-section">
-        <div class="image-container">
-          <img [src]="imageUrl" alt="Loaded image" />
-        </div>
-        <div class="image-details">
-          <h3>Image Description</h3>
-          <p>{{ imageDescription }}</p>
-        </div>
-      </div>
-  
-      <div class="parameters-section">
-        <h3>Tags</h3>
-        <ul>
-          <li *ngFor="let tag of tags">{{ tag }}</li>
-        </ul>
-  
-        <h3>Content Scores</h3>
-        <ul>
-          <li>Adult Score: {{ adultScore }}</li>
-          <li>Racy Score: {{ racyScore }}</li>
-          <li>Gore Score: {{ goreScore }}</li>
-        </ul>
-  
-        <h3>Content Flags</h3>
-        <ul>
-          <li>Adult Content: {{ adultContent ? 'Yes' : 'No' }}</li>
-          <li>Racy Content: {{ racyContent ? 'Yes' : 'No' }}</li>
-          <li>Gory Content: {{ goryContent ? 'Yes' : 'No' }}</li>
-        </ul>
-      </div>
+
+    <div class="parameters-section">
+      <h3>Etiquetas</h3>
+      <ul>
+        <li *ngFor="let tag of tags">{{ tag }}</li>
+      </ul>
+
+      <h3>Puntuaciones de contenido</h3>
+      <ul>
+        <li>Puntuación de adultos: {{ adultScore }}</li>
+        <li>Puntuación picante: {{ racyScore }}</li>
+        <li>Puntuación sangrienta: {{ goreScore }}</li>
+      </ul>
+
+      <h3>Banderas de contenido</h3>
+      <ul>
+        <li>Contenido para adultos: {{ adultContent ? 'Sí' : 'No' }}</li>
+        <li>Contenido picante: {{ racyContent ? 'Sí' : 'No' }}</li>
+        <li>Contenido sangriento: {{ goryContent ? 'Sí' : 'No' }}</li>
+      </ul>
     </div>
   </div>
-  
+</div>
