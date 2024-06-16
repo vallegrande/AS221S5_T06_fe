@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { ComputerVisionService } from '../../service/computer-vision.service';
 
 interface Consulta {
   id: number;
@@ -27,30 +28,47 @@ export class ComputerGaleryComponent implements OnInit {
   isLoading: boolean = false;
   editing: boolean = false;
 
-  showAdultContent: boolean = true; // Mostrar contenido para adultos
-  showRacyContent: boolean = true;  // Mostrar contenido subido de tono
-  showGoryContent: boolean = true;  // Mostrar contenido sangriento
+  showAdultContent: boolean = true;
+  showRacyContent: boolean = true;
+  showGoryContent: boolean = true;
 
-  constructor(private http: HttpClient) { }
+  Active: boolean = true; // Estado activo o inactivo
+  Actions: boolean = true; // Estado de las acciones
+
+  constructor(
+    public service: ComputerVisionService,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
-    this.loadConsultas();
+    this.ActiveStatus(); // Inicializa la carga de estudiantes activos o inactivos
   }
 
-  loadConsultas(): void {
-    this.isLoading = true;
-    this.http.get<Consulta[]>('https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/list')
-      .subscribe(
-        data => {
-          this.consultas = data;
-          this.applyFilters(); // Aplicar filtros inicialmente al cargar las consultas
-          this.isLoading = false;
-        },
-        error => {
-          console.error('Error fetching data:', error);
-          this.isLoading = false;
-        }
-      );
+  getActive(): void {
+    this.service.getListA().subscribe(data => {
+      this.consultas = data;
+      this.applyFilters(); // Aplicar filtros después de cargar los datos
+    });
+  }
+
+  getInactive(): void {
+    this.service.getListI().subscribe(data => {
+      this.consultas = data;
+      this.applyFilters(); // Aplicar filtros después de cargar los datos
+    });
+  }
+
+  getConsulta(): void {
+    if (this.Active) {
+      this.getActive();
+    } else {
+      this.getInactive();
+    }
+  }
+
+  ActiveStatus(): void {
+    this.getConsulta();
+    this.Actions = this.Active;
   }
 
   applyFilters(): void {
@@ -64,21 +82,21 @@ export class ComputerGaleryComponent implements OnInit {
 
   editConsulta(consulta: Consulta): void {
     this.selectedConsulta = { ...consulta };
-    this.editing = true; // Abrir el formulario de edición
+    this.editing = true;
   }
 
   updateConsulta(): void {
     if (this.selectedConsulta) {
       const updatedConsulta = { ...this.selectedConsulta };
 
-      this.http.put(`https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
+      this.http.put(`https://effective-lamp-p46r95vp49r39wgx-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
         description: updatedConsulta.description
       }).subscribe(
         () => {
           const index = this.consultas.findIndex(c => c.id === updatedConsulta.id);
           if (index !== -1) {
             this.consultas[index].description = updatedConsulta.description;
-            this.applyFilters(); // Aplicar filtros después de la actualización
+            this.applyFilters();
           }
           this.selectedConsulta = null;
           Swal.fire({
@@ -111,11 +129,10 @@ export class ComputerGaleryComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.delete(`https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/delete/${id}`)
-          .subscribe(
+        this.service.deactivate(id).subscribe(
             () => {
               this.consultas = this.consultas.filter(consulta => consulta.id !== id);
-              this.applyFilters(); // Aplicar filtros después de la eliminación
+              this.applyFilters();
               this.cancelEdit();
               Swal.fire({
                 icon: 'success',
@@ -129,6 +146,42 @@ export class ComputerGaleryComponent implements OnInit {
                 icon: 'error',
                 title: 'Error',
                 text: 'Hubo un problema al eliminar la consulta. Por favor, inténtalo de nuevo.'
+              });
+            }
+          );
+      }
+    });
+  }
+
+  activateConsulta(id: number): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Seguro que deseas activar esta consulta?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, activar, por favor',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.activate(id).subscribe(
+            () => {
+              this.consultas = this.consultas.filter(consulta => consulta.id !== id);
+              this.applyFilters();
+              this.cancelEdit();
+              Swal.fire({
+                icon: 'success',
+                title: 'Consulta activada Exitosa',
+                text: 'La consulta se ha activado correctamente.'
+              });
+            },
+            error => {
+              console.error('Error activar consulta:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al activar la consulta. Por favor, inténtalo de nuevo.'
               });
             }
           );

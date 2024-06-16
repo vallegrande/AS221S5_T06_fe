@@ -2,17 +2,21 @@
   <h1>Lista Completa</h1>
 
   <div class="filter-container">
-    <label class="filter-label">
+    <label>
       <input type="checkbox" [(ngModel)]="showAdultContent" (change)="applyFilters()">
       Mostrar contenido para adultos
     </label>
-    <label class="filter-label">
+    <label>
       <input type="checkbox" [(ngModel)]="showRacyContent" (change)="applyFilters()">
       Mostrar contenido subido de tono
     </label>
-    <label class="filter-label">
+    <label>
       <input type="checkbox" [(ngModel)]="showGoryContent" (change)="applyFilters()">
       Mostrar contenido sangriento
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="Active" (change)="ActiveStatus()">
+      <label class="form-check-label" for="chkInactivos">{{ Active ? 'Activos' : 'Inactivos' }}</label>
     </label>
   </div>
 
@@ -34,20 +38,18 @@
     </div>
   </div>
 
-  <!-- Detalles de la consulta seleccionada -->
   <div *ngIf="selectedConsulta" class="details-overlay">
     <div class="details-card">
       <h2>{{ selectedConsulta.title }}</h2>
       <img [src]="selectedConsulta.imageUrl" [alt]="selectedConsulta.title" class="details-image">
       <p>{{ selectedConsulta.description }}</p>
-      <!-- Aquí puedes mostrar más detalles como tags si los tienes -->
       <div class="details-buttons">
         <button (click)="editConsulta(selectedConsulta)" class="button">Editar</button>
-        <button (click)="deleteConsulta(selectedConsulta.id)" class="button delete">Eliminar</button>
+        <button *ngIf="getActive" (click)="deleteConsulta(selectedConsulta.id)" class="button delete">Eliminar</button>
+        <button *ngIf="getInactive" (click)="activateConsulta(selectedConsulta.id)" class="button delete">Activar</button>
         <button (click)="cancelEdit()" class="button">Cerrar</button>
-      </div>
+    </div>
 
-      <!-- Formulario de edición -->
       <div *ngIf="editing" class="edit-form">
         <h2>Editar Descripción</h2>
         <form (ngSubmit)="updateConsulta()">
@@ -60,4 +62,3 @@
     </div>
   </div>
 </div>
-

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ComputerVisionService {
 
-  private url = 'https://potential-space-acorn-p46r95vpqr7h7wpq-8085.app.github.dev/computer-vision'
+  private url = 'https://effective-lamp-p46r95vp49r39wgx-8085.app.github.dev/computer-vision'
 
   constructor(private http: HttpClient) { }
 
