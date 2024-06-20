@@ -1,0 +1,88 @@
+<div class="computer-home">
+  <h1 class="main-title">COMPUTERVISION - Valle Grande</h1>
+  <div class="tabs">
+    <button class="tab-button" (click)="selectTab('objetivos')" [class.active]="activeTab === 'objetivos'">Objetivos</button>
+    <button class="tab-button" (click)="selectTab('beneficios')" [class.active]="activeTab === 'beneficios'">Beneficios</button>
+    <button class="tab-button" (click)="selectTab('caracteristicas')" [class.active]="activeTab === 'caracteristicas'">Características</button>
+    <button class="tab-button" (click)="selectTab('integrantes')" [class.active]="activeTab === 'integrantes'">Integrantes</button>
+    <button class="tab-button" (click)="selectTab('conclusiones')" [class.active]="activeTab === 'conclusiones'">Conclusiones</button>
+  </div>
+  <div class="tab-content">
+    <section class="tab-panel" [class.active]="activeTab === 'objetivos'" id="objetivos">
+      <div class="section-header">
+        <h2>Objetivos</h2>
+      </div>
+      <div class="section-content">
+        <img src="assets/imgs/objetivos.jpg" alt="Objetivos">
+        <ul>
+          <li>Desarrollar una aplicación que utilice el servicio cognitivo Computer Vision de Azure.</li>
+          <li>Integrar funcionalidades avanzadas de análisis de imágenes en tiempo real.</li>
+          <li>Explorar casos de uso prácticos para aplicaciones de inteligencia artificial.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-panel" [class.active]="activeTab === 'beneficios'" id="beneficios">
+      <div class="section-header">
+        <h2>Beneficios</h2>
+      </div>
+      <div class="section-content">
+        <img src="assets/imgs/Beneficios.jpg" alt="Beneficios">
+        <ul>
+          <li>Análisis preciso y rápido del contenido de imágenes.</li>
+          <li>Mejora en la eficiencia de procesamiento de datos visuales.</li>
+          <li>Facilitación de la toma de decisiones basada en análisis visual automatizado.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-panel" [class.active]="activeTab === 'caracteristicas'" id="caracteristicas">
+      <div class="section-header">
+        <h2>Características</h2>
+      </div>
+      <div class="section-content">
+        <img src="assets/imgs/Caracteristicas.png" alt="Caracteristicas">
+        <ul>
+          <li>Reconocimiento y clasificación avanzada de objetos en imágenes.</li>
+          <li>Soporte para múltiples tipos de archivos de imagen y formatos.</li>
+          <li>Integración con otras herramientas de desarrollo y servicios en la nube.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-panel" [class.active]="activeTab === 'integrantes'" id="integrantes">
+      <div class="section-header">
+        <h2>Integrantes del Equipo</h2>
+      </div>
+      <div class="integrantes-slider">
+        <div class="integrante">
+          <img src="assets/imgs/ShirleyA.jpg" alt="Shirley Ascencio Luyo">
+          <h3>Shirley Ascencio Luyo</h3>
+        </div>
+        <div class="integrante">
+          <img src="assets/imgs/Valery.png" alt="Valery Chumpitaz">
+          <h3>Valery Chumpitaz</h3>
+        </div>
+        <div class="integrante">
+          <img src="assets/imgs/GabrielG.jpg" alt="Gabriel Gutierrez Quispe">
+          <h3>Gabriel Gutierrez Quispe</h3>
+        </div>
+      </div>
+    </section>
+
+   <section class="tab-panel" [class.active]="activeTab === 'conclusiones'" id="conclusiones">
+  <div class="section-header">
+    <h2>Conclusiones</h2>
+  </div>
+  <div class="section-content">
+    <img src="assets/imgs/Conclusion.jpg" alt="Conclusiones">
+    <ul>
+      <li>Automatización de Procesos: Facilita la automatización de procesos administrativos y educativos al emplear reconocimiento de imágenes para identificar documentos, certificados o incluso reconocimiento facial para identificación de alumnos.</li>
+      <li>Personalización del Contenido: Permite personalizar el contenido mostrado en la landing page según las imágenes o contextos que los usuarios interactúan, adaptando así la información y recursos disponibles.</li>
+      <li>Mejora en la Eficiencia Operativa: Al utilizar análisis de imágenes para tareas como la inscripción o la gestión de recursos, se optimiza la eficiencia operativa del CETPRO al reducir los tiempos de respuesta y aumentar la precisión en la gestión documental.</li>
+    </ul>
+  </div>
+</section>
+
+  </div>
+</div>
