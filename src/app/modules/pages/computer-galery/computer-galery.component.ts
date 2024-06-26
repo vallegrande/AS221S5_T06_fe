@@ -89,7 +89,7 @@ export class ComputerGaleryComponent implements OnInit {
     if (this.selectedConsulta) {
       const updatedConsulta = { ...this.selectedConsulta };
 
-      this.http.put(`https://effective-lamp-p46r95vp49r39wgx-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
+      this.http.put(`https://didactic-tribble-9rx9577wgvjc7xq6-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
         description: updatedConsulta.description
       }).subscribe(
         () => {

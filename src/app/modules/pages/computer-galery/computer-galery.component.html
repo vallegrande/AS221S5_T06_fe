@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Lista Completa</h1>
+  <h1>Galeria</h1>
 
   <div class="filter-container">
     <label>
@@ -29,35 +29,51 @@
     <div *ngFor="let consulta of filteredConsultas" class="card">
       <div class="card-image-container">
         <img [src]="consulta.imageUrl" [alt]="consulta.title" class="card-image">
-        <div class="card-details">
-          <h3>{{ consulta.title }}</h3>
-          <p>{{ consulta.description }}</p>
-          <button (click)="viewDetails(consulta)" class="button">Detalles</button>
+      </div>
+      <div class="card-details">
+        <p>{{ consulta.description }}</p>
+        <div>
+          <span *ngIf="Actions" class="action-icon" (click)="editConsulta(consulta)">
+            <i class='bx bxs-edit-alt' style='color:#f2ae1b'></i>
+          </span>
+        </div>
+        <div>
+          <span *ngIf="Actions" class="action-icon" (click)="deleteConsulta(consulta.id)">
+            <i class='bx bxs-trash' style='color:#f21b1b'></i>
+          </span>
+        </div>
+        <div>
+          <span *ngIf="!Actions" class="action-icon" (click)="activateConsulta(consulta.id)">
+            <i class='bx bx-check-double' style='color:#078600'></i>
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="selectedConsulta" class="details-overlay">
-    <div class="details-card">
-      <h2>{{ selectedConsulta.title }}</h2>
-      <img [src]="selectedConsulta.imageUrl" [alt]="selectedConsulta.title" class="details-image">
-      <p>{{ selectedConsulta.description }}</p>
-      <div class="details-buttons">
-        <button (click)="editConsulta(selectedConsulta)" class="button">Editar</button>
-        <button *ngIf="getActive" (click)="deleteConsulta(selectedConsulta.id)" class="button delete">Eliminar</button>
-        <button *ngIf="getInactive" (click)="activateConsulta(selectedConsulta.id)" class="button delete">Activar</button>
-        <button (click)="cancelEdit()" class="button">Cerrar</button>
-    </div>
-
-      <div *ngIf="editing" class="edit-form">
-        <h2>Editar Descripción</h2>
-        <form (ngSubmit)="updateConsulta()">
-          <label for="description">Descripción</label>
-          <textarea id="description" [(ngModel)]="selectedConsulta.description" name="description" required></textarea>
-          <button type="submit" class="button">Actualizar</button>
-          <button type="button" (click)="cancelEdit()" class="button">Cancelar</button>
-        </form>
+  <div *ngIf="selectedConsulta" class="modal fade show details-overlay" tabindex="-1" style="display: block;"
+    aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content details-card">
+        <div *ngIf="editing" class="edit-form">
+          <div class="modal-header">
+            <h2 class="modal-title" id="estudianteModalLabel">Editar Descripción</h2>
+            <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+          </div>
+          <form (ngSubmit)="updateConsulta()">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <textarea id="description" class="form-control" [(ngModel)]="selectedConsulta.description"
+                  name="description" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Actualizar</button>
+              <button type="button" class="btn btn-danger" (click)="cancelEdit()">Cancelar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
