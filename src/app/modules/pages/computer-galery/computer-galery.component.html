@@ -21,8 +21,8 @@
   </div>
 
   <div class="search-container">
-    <input type="text" [(ngModel)]="searchText" class="search" placeholder="Buscar..." (keyup.enter)="applyFilters()">
-    <button (click)="applyFilters()" class="search-button">Buscar</button>
+    <span class="input-group-text" id="btnBuscar"><i class='bx bx-search-alt-2'></i></span>
+    <input type="search" [(ngModel)]="searchText" class="search" placeholder="Buscar..." (input)="applyFilters()">
   </div>
 
   <div class="card-container">
@@ -53,11 +53,12 @@
   <div *ngIf="selectedConsulta && !editing" class="modal fade show details-overlay" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content details-card text-center">
-        <div class="modal-header">
+        <div class="modal-header text-center">
+          <h5 class="modal-title" id="estudianteModalLabel">{{ selectedConsulta.description }}</h5>
           <button type="button" class="btn-close" (click)="cancelEdit()"></button>
         </div>
         <div class="modal-body">
-          <img [src]="selectedConsulta.imageUrl" [alt]="selectedConsulta.description" class="full-image" [ngClass]="{'blurred': !showUnblurredImage && isBlurred(selectedConsulta)}">
+          <img [src]="selectedConsulta.imageUrl" class="full-image" [ngClass]="{'blurred': !showUnblurredImage && isBlurred(selectedConsulta)}">
         </div>
       </div>
     </div>
