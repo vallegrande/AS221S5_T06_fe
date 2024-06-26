@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ComputerVisionService {
 
-  private url = 'https://didactic-tribble-9rx9577wgvjc7xq6-8085.app.github.dev/computer-vision'
+  private url = 'https://fluffy-waffle-9rx9wgvj4gpfx6r7-8085.app.github.dev/computer-vision'
 
   constructor(private http: HttpClient) { }
 

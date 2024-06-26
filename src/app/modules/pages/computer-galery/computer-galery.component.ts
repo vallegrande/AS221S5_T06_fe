@@ -9,9 +9,13 @@ interface Consulta {
   description: string;
   imageUrl: string;
   tags: string;
+  adultScore: number;
+  racyScore: number;
+  goreScore: number;
   adultContent: boolean;
   racyContent: boolean;
   goryContent: boolean;
+  imageLoaded: boolean;
 }
 
 @Component({
@@ -21,19 +25,21 @@ interface Consulta {
 })
 export class ComputerGaleryComponent implements OnInit {
   consultas: Consulta[] = [];
+  consultaSeleccionada: any;
   filteredConsultas: Consulta[] = [];
   searchText: string = '';
   selectedConsulta: Consulta | null = null;
   darkMode: boolean = false;
   isLoading: boolean = false;
   editing: boolean = false;
+  showUnblurredImage: boolean = false;
 
   showAdultContent: boolean = true;
   showRacyContent: boolean = true;
   showGoryContent: boolean = true;
 
-  Active: boolean = true; // Estado activo o inactivo
-  Actions: boolean = true; // Estado de las acciones
+  Active: boolean = true;
+  Actions: boolean = true;
 
   constructor(
     public service: ComputerVisionService,
@@ -41,20 +47,20 @@ export class ComputerGaleryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ActiveStatus(); // Inicializa la carga de estudiantes activos o inactivos
+    this.ActiveStatus(); 
   }
 
   getActive(): void {
     this.service.getListA().subscribe(data => {
       this.consultas = data;
-      this.applyFilters(); // Aplicar filtros después de cargar los datos
+      this.applyFilters();
     });
   }
 
   getInactive(): void {
     this.service.getListI().subscribe(data => {
       this.consultas = data;
-      this.applyFilters(); // Aplicar filtros después de cargar los datos
+      this.applyFilters(); 
     });
   }
 
@@ -89,7 +95,7 @@ export class ComputerGaleryComponent implements OnInit {
     if (this.selectedConsulta) {
       const updatedConsulta = { ...this.selectedConsulta };
 
-      this.http.put(`https://didactic-tribble-9rx9577wgvjc7xq6-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
+      this.http.put(`https://ideal-telegram-gjpq6v97rg7cp4p-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
         description: updatedConsulta.description
       }).subscribe(
         () => {
@@ -203,11 +209,30 @@ export class ComputerGaleryComponent implements OnInit {
     }
   }
 
-  viewDetails(consulta: Consulta): void {
-    if (this.selectedConsulta === consulta) {
-      this.selectedConsulta = null;
+  // para la vista de la imagen
+  viewImage(consulta: Consulta): void {
+    if (this.isBlurred(consulta)) {
+      Swal.fire({
+        title: 'Contenido Sensible',
+        text: 'Esta imagen contiene contenido sensible. ¿Estás seguro de que deseas verla?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ver',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.showUnblurredImage = true;
+          this.selectedConsulta = consulta;
+        }
+      });
     } else {
+      this.showUnblurredImage = false;
       this.selectedConsulta = consulta;
     }
+  }
+
+  // para la vista de la imagen borrosa
+  isBlurred(consulta: Consulta): boolean {
+    return consulta.adultScore > 0.9 || consulta.racyScore > 0.9 || consulta.goreScore > 0.9;
   }
 }

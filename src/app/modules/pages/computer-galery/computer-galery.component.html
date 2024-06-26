@@ -28,34 +28,45 @@
   <div class="card-container">
     <div *ngFor="let consulta of filteredConsultas" class="card">
       <div class="card-image-container">
-        <img [src]="consulta.imageUrl" [alt]="consulta.title" class="card-image">
+        <img [src]="consulta.imageUrl" [alt]="consulta.title" class="card-image" [ngClass]="{'blurred': isBlurred(consulta)}">
       </div>
-      <div class="card-details">
+      <div class="card-details text-center">
         <p>{{ consulta.description }}</p>
-        <div>
-          <span *ngIf="Actions" class="action-icon" (click)="editConsulta(consulta)">
+        <div class="d-flex justify-content-center align-items-center">
+          <span *ngIf="Actions" class="action-icon me-3" (click)="editConsulta(consulta)">
             <i class='bx bxs-edit-alt' style='color:#f2ae1b'></i>
           </span>
-        </div>
-        <div>
-          <span *ngIf="Actions" class="action-icon" (click)="deleteConsulta(consulta.id)">
+          <span *ngIf="Actions" class="action-icon me-3" (click)="deleteConsulta(consulta.id)">
             <i class='bx bxs-trash' style='color:#f21b1b'></i>
           </span>
-        </div>
-        <div>
-          <span *ngIf="!Actions" class="action-icon" (click)="activateConsulta(consulta.id)">
-            <i class='bx bx-check-double' style='color:#078600'></i>
+          <span *ngIf="!Actions" class="action-icon me-3" (click)="activateConsulta(consulta.id)">
+            <i class='bx bxs-cloud-upload' style='color:#8bc34a'></i>
+          </span>
+          <span class="action-icon" (click)="viewImage(consulta)">
+            <i class='bx bxs-show' style='color:#001286'></i>
           </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="selectedConsulta" class="modal fade show details-overlay" tabindex="-1" style="display: block;"
-    aria-modal="true" role="dialog">
+  <div *ngIf="selectedConsulta && !editing" class="modal fade show details-overlay" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content details-card text-center">
+        <div class="modal-header">
+          <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+        </div>
+        <div class="modal-body">
+          <img [src]="selectedConsulta.imageUrl" [alt]="selectedConsulta.description" class="full-image" [ngClass]="{'blurred': !showUnblurredImage && isBlurred(selectedConsulta)}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedConsulta && editing" class="modal fade show details-overlay" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content details-card">
-        <div *ngIf="editing" class="edit-form">
+        <div class="edit-form">
           <div class="modal-header">
             <h2 class="modal-title" id="estudianteModalLabel">Editar Descripción</h2>
             <button type="button" class="btn-close" (click)="cancelEdit()"></button>
@@ -64,8 +75,7 @@
             <div class="modal-body">
               <div class="mb-3">
                 <label for="description" class="form-label">Descripción</label>
-                <textarea id="description" class="form-control" [(ngModel)]="selectedConsulta.description"
-                  name="description" required></textarea>
+                <textarea id="description" class="form-control" [(ngModel)]="selectedConsulta.description" name="description" required></textarea>
               </div>
             </div>
             <div class="modal-footer">
