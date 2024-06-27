@@ -15,8 +15,9 @@ const routes: Routes = [
     component: NavComponent
   },
   {
-    path: 'computer-home',
-    component: ComputerHomeComponent
+    path: '',
+    component: ComputerHomeComponent,
+    pathMatch: 'full'
   },
   {
     path: 'computer-galery',
