@@ -32,7 +32,7 @@ export class ComputerVisionComponent {
 
     this.loading = true;
     const requestBody = { imageUrl: this.imageUrlInput };
-    this.http.post('https://vigilant-space-fortnight-jvwjqrvg7xx354x4-8085.app.github.dev/computer-vision/analyze', requestBody)
+    this.http.post('https://silver-fiesta-gjw47xjp7v729jrx-8085.app.github.dev/computer-vision/analyze', requestBody)
       .subscribe((response: any) => {
         this.imageUrl = this.imageUrlInput;
         this.imageDescription = response.description;

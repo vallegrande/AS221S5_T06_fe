@@ -1,6 +1,6 @@
 /* Estilos generales para el cuerpo y el contenedor principal */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, serif;
   background-color: #F9F6FD;
   color: #58555E;
   margin: 0;
@@ -8,7 +8,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding-top: 50px; /* Espaciado superior para evitar solapamiento con la barra de navegación */
+  padding-top: 50px; 
 }
 
 .dark-mode {
@@ -17,46 +17,55 @@ body {
 }
 
 .container {
-  width: 90%; /* Ancho del contenedor principal ajustado */
-  max-width: 1200px; /* Ancho máximo para limitar la expansión en pantallas grandes */
-  margin: 20px auto; /* Centrar el contenedor y dar espacio alrededor */
+  width: 90%; 
+  max-width: 1200px;
+  margin: 20px auto; 
 }
-
 h1 {
   margin-bottom: 20px;
-  text-align: center; /* Alineación central del título */
+  text-align: center;
 }
 
 /* Estilos para el contenedor de búsqueda */
 .search-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 
+.input-group-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #ccc; 
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  height: 100%;
+}
+
 .search {
-  padding: 12px; /* Mayor padding para mejorar la interacción */
+  padding: 11px; 
   font-size: 1rem;
   width: 300px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   margin-right: 10px;
 }
 
 .search-button {
-  padding: 12px 24px; /* Aumento del padding para botón más grande */
+  padding: 12px 24px; 
   font-size: 1rem;
   color: #fff;
   background-color: #4CAF50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Transición suave de color de fondo */
+  transition: background-color 0.3s ease; 
 }
 
 .search-button:hover {
-  background-color: #45A049; /* Color más oscuro al pasar el mouse */
+  background-color: #45A049; 
 }
 
 /* Estilos para el contenedor de tarjetas */
@@ -71,16 +80,16 @@ h1 {
   position: relative;
   background-color: #FFFFFF;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Bordes más redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más suave */
-  width: calc(30% - 20px); /* Tres tarjetas por fila con espaciado */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  width: calc(30% - 20px);
   margin-bottom: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Efecto de levantamiento al pasar el mouse */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-image-container {
@@ -96,7 +105,7 @@ h1 {
 }
 
 .card-image:hover {
-  transform: scale(1.05); /* Zoom suave al pasar el mouse */
+  transform: scale(1.05); 
 }
 
 .card-details {
@@ -119,7 +128,7 @@ h1 {
 .card p {
   margin: 0;
   padding: 5px 0;
-  text-align: center; /* Alineación central de título y texto */
+  text-align: center; 
 }
 
 .card button {
@@ -137,7 +146,7 @@ h1 {
 }
 
 .card button:hover {
-  background-color: #45A049; /* Color más oscuro al pasar el mouse */
+  background-color: #45A049;
 }
 
 /* Estilos para el overlay de detalles */
@@ -151,7 +160,7 @@ h1 {
   padding: 10px;
   transition: opacity 0.3s ease;
   opacity: 0;
-  z-index: 1; /* Ajusta el z-index si es necesario */
+  z-index: 1; 
 }
 
 .details-overlay {
@@ -164,95 +173,26 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegúrate de que el overlay tenga un z-index alto */
+  z-index: 1000;
 }
 
 /* Estilos para el formulario de edición */
-.edit-form {
-  background-color: #FFFFFF;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-  width: 100%;
-  max-width: 600px;
-}
-
-.edit-form h2 {
-  margin-top: 0;
-  text-align: center;
-}
-
-.edit-form label {
-  display: block;
-  margin: 10px 0 5px;
-  text-align: left;
-}
-
-.edit-form textarea,
-.edit-form input {
-  width: calc(100% - 22px); /* Ajuste para el borde */
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.edit-form button {
-  padding: 12px 24px; /* Aumento del padding para botón más grande */
-  font-size: 1rem;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.edit-form button[type="button"] {
-  background-color: #f44336;
-}
-
-.edit-form button[type="button"]:hover {
-  background-color: #d3100d;
-}
-
-.edit-form button:hover {
-  background-color: #45A049;
-}
-
-.card button.delete {
-  background-color: #D9534F;
-  transition: background-color 0.3s ease;
-}
-
-.card button:hover {
-  background-color: #C9302C;
-}
-
-.card button.delete:hover {
-  background-color: #C9302C;
-}
-
 .filter-container {
   display: flex;
-  justify-content: space-around; /* Distribución equitativa de los elementos */
+  justify-content: space-around; 
   align-items: center;
   margin-bottom: 20px;
 }
 
 .filter-label {
-  display: flex; /* Para alinear el checkbox y el texto */
+  display: flex; 
   align-items: center;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .filter-label input[type="checkbox"] {
-  margin-right: 8px; /* Espacio entre el checkbox y el texto */
+  margin-right: 8px; 
   cursor: pointer;
 }
 
@@ -270,12 +210,141 @@ h1 {
 }
 
 .filter-label input[type="checkbox"]:checked::before {
-  background-color: #4CAF50; /* Color de fondo cuando está seleccionado */
-  border-color: #4CAF50; /* Color del borde cuando está seleccionado */
+  background-color: #4CAF50; 
+  border-color: #4CAF50; 
 }
 
-/* Estilos para el texto del label */
 .filter-label span {
   vertical-align: middle;
 }
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 200px; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.card-image-container {
+  width: 100%;
+  height: 150px; 
+  overflow: hidden;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+
+.card-details {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.details-image {
+  width: 100%;
+  height: 250px; 
+  object-fit: cover;
+}
+
+.details-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+}
+
+.action-icon {
+  background-color: #f9f9f968; 
+  padding: 8px;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-icon:hover {
+  background-color: #e0e0e0; 
+}
+
+.action-icon i {
+  color: inherit;
+}
+
+
+.full-image {
+  width: 100%;
+  height: 100%;
+}
+
+.blurred {
+  filter: blur(10px);
+}
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group-text {
+  background-color: #ffffff;
+  border: none;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  color: #6c757d;
+}
+
+.input-group-text i {
+  font-size: 1.5rem;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #80bdff;
+}
+
+.input-group-text:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.custom-switch:checked {
+  background-color: green !important;
+}
+
+.custom-switch:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.25);
+}
+
+.custom-switch {
+  border-color: green !important;
+}
+.custom-label {
+  font-family: Georgia, serif;
+}
+.custom-title {
+  font-family: Georgia, serif;
+}
+.custom-search {
+  font-family: Georgia, serif;
+}

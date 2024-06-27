@@ -1,63 +1,96 @@
 <div class="container">
-  <h1>Lista Completa</h1>
+  <h1 class="custom-title">Galería de Consultas</h1>
 
   <div class="filter-container">
-    <label>
-      <input type="checkbox" [(ngModel)]="showAdultContent" (change)="applyFilters()">
-      Mostrar contenido para adultos
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="showRacyContent" (change)="applyFilters()">
-      Mostrar contenido subido de tono
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="showGoryContent" (change)="applyFilters()">
-      Mostrar contenido sangriento
-    </label>
-    <label>
-      <input type="checkbox" [(ngModel)]="Active" (change)="ActiveStatus()">
-      <label class="form-check-label" for="chkInactivos">{{ Active ? 'Activos' : 'Inactivos' }}</label>
-    </label>
+    <div class="form-check form-switch">
+      <input class="form-check-input custom-switch" type="checkbox" id="showAdultContent" [(ngModel)]="showAdultContent" (change)="applyFilters()">
+      <label class="form-check-label custom-label" for="showAdultContent">Mostrar contenido para adultos</label>
+    </div>
+    
+    <div class="form-check form-switch">
+      <input class="form-check-input custom-switch" type="checkbox" id="showRacyContent" [(ngModel)]="showRacyContent" (change)="applyFilters()">
+      <label class="form-check-label custom-label" for="showRacyContent">Mostrar contenido subido de tono</label>
+    </div>
+    
+    <div class="form-check form-switch">
+      <input class="form-check-input custom-switch" type="checkbox" id="showGoryContent" [(ngModel)]="showGoryContent" (change)="applyFilters()">
+      <label class="form-check-label custom-label" for="showGoryContent">Mostrar contenido sangriento</label>
+    </div>
+    
+    <div class="form-check form-switch">
+      <input class="form-check-input custom-switch" type="checkbox" id="Active" [(ngModel)]="Active" (change)="ActiveStatus()">
+      <label class="form-check-label custom-label" for="Active">{{ Active ? 'Activos' : 'Inactivos' }}</label>
+    </div>
   </div>
+  
 
   <div class="search-container">
-    <input type="text" [(ngModel)]="searchText" class="search" placeholder="Buscar..." (keyup.enter)="applyFilters()">
-    <button (click)="applyFilters()" class="search-button">Buscar</button>
+    <div class="input-group">
+      <span class="input-group-text" id="btnBuscar"><i class='bx bx-search-alt-2'></i></span>
+      <input type="search" [(ngModel)]="searchText" class="form-control search-input custom-search" placeholder="Buscar..." (input)="applyFilters()">
+    </div>
   </div>
-
+  
   <div class="card-container">
     <div *ngFor="let consulta of filteredConsultas" class="card">
       <div class="card-image-container">
-        <img [src]="consulta.imageUrl" [alt]="consulta.title" class="card-image">
-        <div class="card-details">
-          <h3>{{ consulta.title }}</h3>
-          <p>{{ consulta.description }}</p>
-          <button (click)="viewDetails(consulta)" class="button">Detalles</button>
+        <img [src]="consulta.imageUrl" [alt]="consulta.title" class="card-image" [ngClass]="{'blurred': isBlurred(consulta)}">
+      </div>
+      <div class="card-details text-center">
+        <p>{{ consulta.description }}</p>
+        <div class="d-flex justify-content-center align-items-center">
+          <span *ngIf="Actions" class="action-icon me-3" (click)="editConsulta(consulta)">
+            <i class='bx bxs-edit-alt' style='color:#f2ae1b'></i>
+          </span>
+          <span *ngIf="Actions" class="action-icon me-3" (click)="deleteConsulta(consulta.id)">
+            <i class='bx bxs-trash' style='color:#f21b1b'></i>
+          </span>
+          <span *ngIf="!Actions" class="action-icon me-3" (click)="activateConsulta(consulta.id)">
+            <i class='bx bxs-cloud-upload' style='color:#8bc34a'></i>
+          </span>
+          <span class="action-icon" (click)="viewImage(consulta)">
+            <i class='bx bxs-show' style='color:#001286'></i>
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="selectedConsulta" class="details-overlay">
-    <div class="details-card">
-      <h2>{{ selectedConsulta.title }}</h2>
-      <img [src]="selectedConsulta.imageUrl" [alt]="selectedConsulta.title" class="details-image">
-      <p>{{ selectedConsulta.description }}</p>
-      <div class="details-buttons">
-        <button (click)="editConsulta(selectedConsulta)" class="button">Editar</button>
-        <button *ngIf="getActive" (click)="deleteConsulta(selectedConsulta.id)" class="button delete">Eliminar</button>
-        <button *ngIf="getInactive" (click)="activateConsulta(selectedConsulta.id)" class="button delete">Activar</button>
-        <button (click)="cancelEdit()" class="button">Cerrar</button>
+  <div *ngIf="selectedConsulta && !editing" class="modal fade show details-overlay" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content details-card text-center">
+        <div class="modal-header text-center">
+          <h5 class="modal-title" id="estudianteModalLabel">{{ selectedConsulta.description }}</h5>
+          <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+        </div>
+        <div class="modal-body">
+          <img [src]="selectedConsulta.imageUrl" class="full-image" [ngClass]="{'blurred': !showUnblurredImage && isBlurred(selectedConsulta)}">
+        </div>
+      </div>
     </div>
+  </div>
 
-      <div *ngIf="editing" class="edit-form">
-        <h2>Editar Descripción</h2>
-        <form (ngSubmit)="updateConsulta()">
-          <label for="description">Descripción</label>
-          <textarea id="description" [(ngModel)]="selectedConsulta.description" name="description" required></textarea>
-          <button type="submit" class="button">Actualizar</button>
-          <button type="button" (click)="cancelEdit()" class="button">Cancelar</button>
-        </form>
+  <div *ngIf="selectedConsulta && editing" class="modal fade show details-overlay" tabindex="-1" style="display: block;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content details-card">
+        <div class="edit-form">
+          <div class="modal-header">
+            <h2 class="modal-title" id="estudianteModalLabel">Editar Imagen</h2>
+            <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+          </div>
+          <form (ngSubmit)="updateConsulta()">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="imageUrl" class="form-label">URL de la imagen</label>
+                <textarea id="imageUrl" class="form-control" [(ngModel)]="selectedConsulta.imageUrl" name="imageUrl" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Actualizar</button>
+              <button type="button" class="btn btn-danger" (click)="cancelEdit()">Cancelar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

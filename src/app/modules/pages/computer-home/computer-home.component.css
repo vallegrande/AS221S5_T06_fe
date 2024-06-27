@@ -1,0 +1,180 @@
+/* CSS para el contenedor principal */
+.computer-home {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  font-family: Georgia, serif;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS para el header */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-family: Georgia, serif;
+  font-size: 2.5em;
+  color: #333;
+  position: relative;
+}
+
+.main-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #5cb85c;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.description {
+  font-size: 1.2em;
+  color: #555;
+  margin-top: 10px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  font-family: Georgia, serif;
+  font-size: 2em;
+  color: #5cb85c;
+}
+
+.section-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.section-content .image-container {
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-content img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.section-content img:hover {
+  transform: scale(1.05);
+}
+
+.section-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+  color: #444;
+  line-height: 1.8;
+  font-size: 1.1em;
+}
+
+.tab-panel {
+  margin-bottom: 50px;
+}
+
+/* CSS para la sección de autores */
+.integrantes-slider {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+}
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.header-section img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.title-section {
+  text-align: center;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.2em;
+  color: #666;
+  margin-top: 20px;
+}
+
+.badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.badges-container img {
+  max-width: 120px;
+  height: auto;
+}
+
+
+.integrantes-slider {
+  display: flex;
+  gap: 30px;
+  justify-content: center; /* Centrar los integrantes */
+  overflow-x: auto;
+}
+
+.integrante {
+  text-align: center;
+  width: 200px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center; /* Centrar los iconos */
+  margin-top: 10px;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.social-links img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+  transform: scale(1.1);
+}
