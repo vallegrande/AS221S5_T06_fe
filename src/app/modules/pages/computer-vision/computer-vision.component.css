@@ -1,4 +1,3 @@
-/* General Styles */
 body {
   font-family: Georgia, serif;
   background-color: #f4f4f9;
@@ -181,10 +180,6 @@ body {
   }
   .blurred {
   position: relative;
-  }
-  
-  .blurred img {
- 
   }
   
   .blurred .fa-eye-slash {

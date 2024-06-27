@@ -1,6 +1,6 @@
 /* Estilos generales para el cuerpo y el contenedor principal */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, serif;
   background-color: #F9F6FD;
   color: #58555E;
   margin: 0;
@@ -214,14 +214,10 @@ h1 {
   border-color: #4CAF50; 
 }
 
-/* Estilos para el texto del label */
 .filter-label span {
   vertical-align: middle;
 }
 
-/* styles.css */
-
-/* Contenedor de la tarjeta */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -330,4 +326,25 @@ h1 {
 .input-group-text:hover {
   cursor: pointer;
   background-color: #f0f0f0;
+}
+
+.custom-switch:checked {
+  background-color: green !important;
+}
+
+.custom-switch:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.25);
+}
+
+.custom-switch {
+  border-color: green !important;
+}
+.custom-label {
+  font-family: Georgia, serif;
+}
+.custom-title {
+  font-family: Georgia, serif;
+}
+.custom-search {
+  font-family: Georgia, serif;
 }

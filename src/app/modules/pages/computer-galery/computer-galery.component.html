@@ -1,32 +1,33 @@
 <div class="container">
-  <h1>Galería de Consultas</h1>
+  <h1 class="custom-title">Galería de Consultas</h1>
 
   <div class="filter-container">
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="showAdultContent" [(ngModel)]="showAdultContent" (change)="applyFilters()">
-      <label class="form-check-label" for="showAdultContent">Mostrar contenido para adultos</label>
+      <input class="form-check-input custom-switch" type="checkbox" id="showAdultContent" [(ngModel)]="showAdultContent" (change)="applyFilters()">
+      <label class="form-check-label custom-label" for="showAdultContent">Mostrar contenido para adultos</label>
     </div>
     
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="showRacyContent" [(ngModel)]="showRacyContent" (change)="applyFilters()">
-      <label class="form-check-label" for="showRacyContent">Mostrar contenido subido de tono</label>
+      <input class="form-check-input custom-switch" type="checkbox" id="showRacyContent" [(ngModel)]="showRacyContent" (change)="applyFilters()">
+      <label class="form-check-label custom-label" for="showRacyContent">Mostrar contenido subido de tono</label>
     </div>
     
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="showGoryContent" [(ngModel)]="showGoryContent" (change)="applyFilters()">
-      <label class="form-check-label" for="showGoryContent">Mostrar contenido sangriento</label>
+      <input class="form-check-input custom-switch" type="checkbox" id="showGoryContent" [(ngModel)]="showGoryContent" (change)="applyFilters()">
+      <label class="form-check-label custom-label" for="showGoryContent">Mostrar contenido sangriento</label>
     </div>
     
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="Active" [(ngModel)]="Active" (change)="ActiveStatus()">
-      <label class="form-check-label" for="Active">{{ Active ? 'Activos' : 'Inactivos' }}</label>
+      <input class="form-check-input custom-switch" type="checkbox" id="Active" [(ngModel)]="Active" (change)="ActiveStatus()">
+      <label class="form-check-label custom-label" for="Active">{{ Active ? 'Activos' : 'Inactivos' }}</label>
     </div>
   </div>
+  
 
   <div class="search-container">
     <div class="input-group">
       <span class="input-group-text" id="btnBuscar"><i class='bx bx-search-alt-2'></i></span>
-      <input type="search" [(ngModel)]="searchText" class="form-control search-input" placeholder="Buscar..." (input)="applyFilters()">
+      <input type="search" [(ngModel)]="searchText" class="form-control search-input custom-search" placeholder="Buscar..." (input)="applyFilters()">
     </div>
   </div>
   
@@ -74,13 +75,13 @@
       <div class="modal-content details-card">
         <div class="edit-form">
           <div class="modal-header">
-            <h2 class="modal-title" id="estudianteModalLabel">Editar Descripción</h2>
+            <h2 class="modal-title" id="estudianteModalLabel">Editar Imagen</h2>
             <button type="button" class="btn-close" (click)="cancelEdit()"></button>
           </div>
           <form (ngSubmit)="updateConsulta()">
             <div class="modal-body">
               <div class="mb-3">
-                <label for="imageUrl" class="form-label">imageUrl</label>
+                <label for="imageUrl" class="form-label">URL de la imagen</label>
                 <textarea id="imageUrl" class="form-control" [(ngModel)]="selectedConsulta.imageUrl" name="imageUrl" required></textarea>
               </div>
             </div>

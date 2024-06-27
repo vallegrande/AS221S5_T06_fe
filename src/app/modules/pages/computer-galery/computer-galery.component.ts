@@ -95,33 +95,29 @@ export class ComputerGaleryComponent implements OnInit {
     if (this.selectedConsulta) {
       const updatedConsulta = { ...this.selectedConsulta };
   
-      // Solo enviar el campo 'imageUrl' al endpoint de actualización
       const requestBody = { imageUrl: updatedConsulta.imageUrl };
   
       this.http.put(`https://silver-fiesta-gjw47xjp7v729jrx-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, requestBody)
         .subscribe(
           (response: any) => {
-            // Actualizar los datos de la consulta en la lista
             const index = this.consultas.findIndex(c => c.id === updatedConsulta.id);
             if (index !== -1) {
               this.consultas[index].imageUrl = response.imageUrl;
-              this.consultas[index].description = response.description;  // Si actualizas otros campos
-              // Actualiza otros campos según necesites
-              this.applyFilters(); // Aplicar filtros si es necesario
+              this.applyFilters(); 
             }
             this.selectedConsulta = null;
             Swal.fire({
               icon: 'success',
               title: 'Actualización Exitosa',
-              text: 'La consulta se ha actualizado correctamente.'
+              text: 'La imagen se ha actualizado correctamente.'
             });
           },
           error => {
-            console.error('Error updating consulta:', error);
+            console.error('Error updating imagen:', error);
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'Hubo un problema al actualizar la consulta. Por favor, inténtalo de nuevo.'
+              text: 'Hubo un problema al actualizar la imagen. Por favor, inténtalo de nuevo.'
             });
           }
         );
@@ -132,7 +128,7 @@ export class ComputerGaleryComponent implements OnInit {
   deleteConsulta(id: number): void {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: 'Esta acción no se puede revertir. ¿Seguro que deseas eliminar esta consulta?',
+      text: 'Esta acción no se puede revertir. ¿Seguro que deseas eliminar esta imagen?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -149,15 +145,15 @@ export class ComputerGaleryComponent implements OnInit {
               Swal.fire({
                 icon: 'success',
                 title: 'Eliminación Exitosa',
-                text: 'La consulta se ha eliminado correctamente.'
+                text: 'La imagen se ha eliminado correctamente.'
               });
             },
             error => {
-              console.error('Error deleting consulta:', error);
+              console.error('Error deleting imagen:', error);
               Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Hubo un problema al eliminar la consulta. Por favor, inténtalo de nuevo.'
+                text: 'Hubo un problema al eliminar la imagen. Por favor, inténtalo de nuevo.'
               });
             }
           );
@@ -168,7 +164,7 @@ export class ComputerGaleryComponent implements OnInit {
   activateConsulta(id: number): void {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: '¿Seguro que deseas activar esta consulta?',
+      text: '¿Seguro que deseas activar esta imagen?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -184,16 +180,16 @@ export class ComputerGaleryComponent implements OnInit {
               this.cancelEdit();
               Swal.fire({
                 icon: 'success',
-                title: 'Consulta activada Exitosa',
-                text: 'La consulta se ha activado correctamente.'
+                title: 'imagen activada con Exito',
+                text: 'La imagen se ha activado correctamente.'
               });
             },
             error => {
-              console.error('Error activar consulta:', error);
+              console.error('Error activar imagen:', error);
               Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Hubo un problema al activar la consulta. Por favor, inténtalo de nuevo.'
+                text: 'Hubo un problema al activar la imagen. Por favor, inténtalo de nuevo.'
               });
             }
           );

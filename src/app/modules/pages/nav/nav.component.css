@@ -64,3 +64,6 @@
 .active {
   background-color: #4eb34e; /* Color de fondo cuando el enlace está activo */
 }
+.custom-nav-logo {
+  font-family: Georgia, serif;
+}

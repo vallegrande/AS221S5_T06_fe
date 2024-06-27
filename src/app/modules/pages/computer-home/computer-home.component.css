@@ -1,92 +1,180 @@
+/* CSS para el contenedor principal */
 .computer-home {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+  padding: 40px;
+  font-family: Georgia, serif;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.tabs {
-  display: flex;
-  justify-content: center;
+/* CSS para el header */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  max-width: 200px;
   margin-bottom: 20px;
 }
 
-.tab-button {
-  padding: 10px 20px;
-  background-color: #45A049;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 0 5px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+.main-title {
+  font-family: Georgia, serif;
+  font-size: 2.5em;
+  color: #333;
+  position: relative;
 }
 
-.tab-button.active {
-  background-color: #0056b3;
-}
-
-.tab-button:hover {
-  background-color: #6ABD6D; /* Color un poco más claro al pasar el cursor */
-}
-
-.tab-content {
-  background-color: #f5f5f5; /* Color de fondo */
-  padding: 20px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  text-align: left;
-}
-
-.tab-panel {
-  display: none;
-}
-
-.tab-panel.active {
+.main-title::after {
+  content: '';
   display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #5cb85c;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.description {
+  font-size: 1.2em;
+  color: #555;
+  margin-top: 10px;
 }
 
 .section-header {
+  text-align: center;
   margin-bottom: 20px;
 }
 
 .section-header h2 {
-  font-size: 24px; /* Tamaño de fuente */
-  margin-bottom: 10px; /* Espacio inferior */
+  font-family: Georgia, serif;
+  font-size: 2em;
+  color: #5cb85c;
 }
 
 .section-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.section-content .image-container {
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .section-content img {
   max-width: 100%;
-  border-radius: 8px; /* Bordes redondeados */
-  margin-bottom: 15px; /* Espacio inferior */
+  height: auto;
+  transition: transform 0.3s ease;
 }
+
+.section-content img:hover {
+  transform: scale(1.05);
+}
+
+.section-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+  color: #444;
+  line-height: 1.8;
+  font-size: 1.1em;
+}
+
+.tab-panel {
+  margin-bottom: 50px;
+}
+
+/* CSS para la sección de autores */
+.integrantes-slider {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+}
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.header-section img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.title-section {
+  text-align: center;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.2em;
+  color: #666;
+  margin-top: 20px;
+}
+
+.badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.badges-container img {
+  max-width: 120px;
+  height: auto;
+}
+
 
 .integrantes-slider {
   display: flex;
-  justify-content: space-around;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  padding: 20px; /* Espaciado interno */
-  margin-top: 20px; /* Espacio superior */
+  gap: 30px;
+  justify-content: center; /* Centrar los integrantes */
+  overflow-x: auto;
 }
 
 .integrante {
   text-align: center;
+  width: 200px;
 }
 
-.integrante img {
-  max-width: 100%;
+.avatar {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center; /* Centrar los iconos */
+  margin-top: 10px;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.social-links img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+  transform: scale(1.1);
 }

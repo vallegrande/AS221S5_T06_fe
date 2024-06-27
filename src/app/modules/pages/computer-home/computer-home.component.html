@@ -1,88 +1,141 @@
 <div class="computer-home">
-  <h1 class="main-title">COMPUTERVISION - Valle Grande</h1>
-  <div class="tabs">
-    <button class="tab-button" (click)="selectTab('objetivos')" [class.active]="activeTab === 'objetivos'">Objetivos</button>
-    <button class="tab-button" (click)="selectTab('beneficios')" [class.active]="activeTab === 'beneficios'">Beneficios</button>
-    <button class="tab-button" (click)="selectTab('caracteristicas')" [class.active]="activeTab === 'caracteristicas'">Características</button>
-    <button class="tab-button" (click)="selectTab('integrantes')" [class.active]="activeTab === 'integrantes'">Integrantes</button>
-    <button class="tab-button" (click)="selectTab('conclusiones')" [class.active]="activeTab === 'conclusiones'">Conclusiones</button>
+  <div class="header-section">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/200px-Microsoft_Azure_Logo.svg.png" alt="Azure Logo">
+    <div class="title-section">
+      <h1 class="main-title custom-title">SERVICIO COGNITIVO COMPUTER VISION</h1>
+      <blockquote class="quote">El servicio cognitivo Computer Vision de Azure es una herramienta de inteligencia artificial que permite a las aplicaciones analizar y comprender el contenido de las imágenes.</blockquote>
+    </div>
   </div>
+
   <div class="tab-content">
-    <section class="tab-panel" [class.active]="activeTab === 'objetivos'" id="objetivos">
+
+    <section class="tab-panel" id="Descripción">
       <div class="section-header">
-        <h2>Objetivos</h2>
+        <h2 class="custom-title">Descripción🔍📚</h2>
       </div>
       <div class="section-content">
-        <img src="assets/imgs/objetivos.jpg" alt="Objetivos">
+        <div class="image-container">
+          <img src="https://i.imgur.com/wyvMRN2.png" alt="Conclusiones">
+        </div>
         <ul>
-          <li>Desarrollar una aplicación que utilice el servicio cognitivo Computer Vision de Azure.</li>
-          <li>Integrar funcionalidades avanzadas de análisis de imágenes en tiempo real.</li>
-          <li>Explorar casos de uso prácticos para aplicaciones de inteligencia artificial.</li>
+          <li>Este proyecto utiliza el servicio cognitivo de Azure Computer Vision para analizar imágenes y proporcionar descripciones y etiquetas detalladas.</li>
         </ul>
       </div>
     </section>
 
-    <section class="tab-panel" [class.active]="activeTab === 'beneficios'" id="beneficios">
+    <section class="tab-panel" id="objetivos">
       <div class="section-header">
-        <h2>Beneficios</h2>
+        <h2 class="custom-title">Objetivos📑✏️</h2>
       </div>
       <div class="section-content">
-        <img src="assets/imgs/Beneficios.jpg" alt="Beneficios">
+        <ul>
+          <li>Desarrollar una aplicación que utilice el servicio cognitivo Computer Vision de Azure.</li>
+          <li>Integrar funcionalidades avanzadas de análisis de imágenes en tiempo real.</li>
+          <li>Proveer descripciones precisas de las imágenes.</li>
+          <li>Identificar contenido sensible en las imágenes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="beneficios">
+      <div class="section-header">
+        <h2 class="custom-title">Beneficios🚀</h2>
+      </div>
+      <div class="section-content">
         <ul>
           <li>Análisis preciso y rápido del contenido de imágenes.</li>
           <li>Mejora en la eficiencia de procesamiento de datos visuales.</li>
           <li>Facilitación de la toma de decisiones basada en análisis visual automatizado.</li>
+          <li>Identificación rápida de contenido inapropiado.</li>
         </ul>
       </div>
     </section>
 
-    <section class="tab-panel" [class.active]="activeTab === 'caracteristicas'" id="caracteristicas">
+    <section class="tab-panel" id="caracteristicas">
       <div class="section-header">
-        <h2>Características</h2>
+        <h2 class="custom-title">Características📚</h2>
       </div>
       <div class="section-content">
-        <img src="assets/imgs/Caracteristicas.png" alt="Caracteristicas">
         <ul>
           <li>Reconocimiento y clasificación avanzada de objetos en imágenes.</li>
           <li>Soporte para múltiples tipos de archivos de imagen y formatos.</li>
           <li>Integración con otras herramientas de desarrollo y servicios en la nube.</li>
+          <li>Etiquetado automático de imágenes.</li>
+          <li>Interfaz de usuario intuitiva.</li>
         </ul>
       </div>
     </section>
 
-    <section class="tab-panel" [class.active]="activeTab === 'integrantes'" id="integrantes">
+    <section class="tab-panel" id="integrantes">
       <div class="section-header">
-        <h2>Integrantes del Equipo</h2>
+        <h2 class="custom-title">Desarrolladores 🧑‍💻</h2>
       </div>
       <div class="integrantes-slider">
         <div class="integrante">
-          <img src="https://github.com/ShirleyAscencioLuyo.png" alt="Shirley Ascencio Luyo">
-          <h3>Shirley Ascencio Luyo</h3>
+          <div class="avatar">
+            <img src="https://github.com/ShirleyAscencioLuyo.png" alt="Shirley Ascencio Luyo">
+          </div>
+          <h3 class="custom-title">Shirley Ascencio</h3>
+          <div class="social-links">
+            <a href="https://github.com/ShirleyAscencioLuyo" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/shirley-ascencio-432993239/" target="_blank"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn"></a>
+          </div>
         </div>
         <div class="integrante">
-          <img src="https://github.com/ValeryChumpitaz.png" alt="Valery Chumpitaz">
-          <h3>Valery Chumpitaz</h3>
+          <div class="avatar">
+            <img src="https://github.com/ValeryChumpitaz.png" alt="Valery Chumpitaz">
+          </div>
+          <h3 class="custom-title">Valery Chumpitaz</h3>
+          <div class="social-links">
+            <a href="https://github.com/ValeryChumpitaz" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/valery-giselle-chumpitaz-caycho-142261238/" target="_blank"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn"></a>
+          </div>
         </div>
         <div class="integrante">
-          <img src="https://github.com/GabrielGutierrezQuispe.png" alt="Gabriel Gutierrez Quispe">
-          <h3>Gabriel Gutierrez Quispe</h3>
+          <div class="avatar">
+            <img src="https://github.com/GabrielGutierrezQuispe.png" alt="Gabriel Gutierrez Quispe">
+          </div>
+          <h3 class="custom-title">Gabriel Gutierrez</h3>
+          <div class="social-links">
+            <a href="https://github.com/GabrielGutierrezQuispe" target="_blank"><img src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/gabrielegutierrez/e" target="_blank"><img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <section class="tab-panel" id="herramientas">
+      <div class="section-header">
+        <h2 class="custom-title">Herramientas🌐🛠️</h2>
+      </div>
+      <div class="section-content">
+        <div class="badges-container">
+          <img src="http://img.shields.io/badge/-Spring-6DB33F?style=flat&logo=spring&logoColor=ffffff" alt="Spring">
+          <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white" alt="Postman">
+          <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL">
+          <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker">
+          <img src="https://img.shields.io/badge/Maven-C71A36?style=flat&logo=apache-maven&link=hhttps://github.com/Quananhle/Java-Web-Developer" alt="Maven">
+          <img src="https://img.shields.io/badge/-Git-black?style=flat&logo=git&link=https://github.com/Quananhle" alt="Git">
+          <img src="https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white" alt="GitHub">
         </div>
       </div>
     </section>
 
-   <section class="tab-panel" [class.active]="activeTab === 'conclusiones'" id="conclusiones">
-  <div class="section-header">
-    <h2>Conclusiones</h2>
-  </div>
-  <div class="section-content">
-    <img src="assets/imgs/Conclusion.jpg" alt="Conclusiones">
-    <ul>
-      <li>Automatización de Procesos: Facilita la automatización de procesos administrativos y educativos al emplear reconocimiento de imágenes para identificar documentos, certificados o incluso reconocimiento facial para identificación de alumnos.</li>
-      <li>Personalización del Contenido: Permite personalizar el contenido mostrado en la landing page según las imágenes o contextos que los usuarios interactúan, adaptando así la información y recursos disponibles.</li>
-      <li>Mejora en la Eficiencia Operativa: Al utilizar análisis de imágenes para tareas como la inscripción o la gestión de recursos, se optimiza la eficiencia operativa del CETPRO al reducir los tiempos de respuesta y aumentar la precisión en la gestión documental.</li>
-    </ul>
-  </div>
-</section>
-
+    <section class="tab-panel" id="conclusiones">
+      <div class="section-header">
+        <h2 class="custom-title">Conclusiones📚</h2>
+      </div>
+      <div class="section-content">
+        <ul>
+          <li>Automatización de Procesos: Facilita la automatización de procesos administrativos y educativos al emplear reconocimiento de imágenes para identificar documentos, certificados o incluso reconocimiento facial para identificación de alumnos.</li>
+          <li>Personalización del Contenido: Permite personalizar el contenido mostrado en la landing page según las imágenes o contextos que los usuarios interactúan, adaptando así la información y recursos disponibles.</li>
+          <li>Mejora en la Eficiencia Operativa: Al utilizar análisis de imágenes para tareas como la inscripción o la gestión de recursos, se optimiza la eficiencia operativa del CETPRO al reducir los tiempos de respuesta y aumentar la precisión en la gestión documental.</li>
+          <li>El uso del servicio de Computer Vision de Azure permite analizar y gestionar imágenes de manera eficiente, identificando contenido sensible y proporcionando descripciones precisas, lo cual mejora la gestión de contenido visual en diversas aplicaciones.</li>
+        </ul>
+          <img src="https://i.imgur.com/vdJb2Ka.png" alt="Imagen centrada">
+      </div>
+    </section>
+    
   </div>
 </div>
