@@ -94,34 +94,40 @@ export class ComputerGaleryComponent implements OnInit {
   updateConsulta(): void {
     if (this.selectedConsulta) {
       const updatedConsulta = { ...this.selectedConsulta };
-
-      this.http.put(`https://ideal-telegram-gjpq6v97rg7cp4p-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, {
-        description: updatedConsulta.description
-      }).subscribe(
-        () => {
-          const index = this.consultas.findIndex(c => c.id === updatedConsulta.id);
-          if (index !== -1) {
-            this.consultas[index].description = updatedConsulta.description;
-            this.applyFilters();
+  
+      // Solo enviar el campo 'imageUrl' al endpoint de actualización
+      const requestBody = { imageUrl: updatedConsulta.imageUrl };
+  
+      this.http.put(`https://silver-fiesta-gjw47xjp7v729jrx-8085.app.github.dev/computer-vision/update/${updatedConsulta.id}`, requestBody)
+        .subscribe(
+          (response: any) => {
+            // Actualizar los datos de la consulta en la lista
+            const index = this.consultas.findIndex(c => c.id === updatedConsulta.id);
+            if (index !== -1) {
+              this.consultas[index].imageUrl = response.imageUrl;
+              this.consultas[index].description = response.description;  // Si actualizas otros campos
+              // Actualiza otros campos según necesites
+              this.applyFilters(); // Aplicar filtros si es necesario
+            }
+            this.selectedConsulta = null;
+            Swal.fire({
+              icon: 'success',
+              title: 'Actualización Exitosa',
+              text: 'La consulta se ha actualizado correctamente.'
+            });
+          },
+          error => {
+            console.error('Error updating consulta:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un problema al actualizar la consulta. Por favor, inténtalo de nuevo.'
+            });
           }
-          this.selectedConsulta = null;
-          Swal.fire({
-            icon: 'success',
-            title: 'Actualización Exitosa',
-            text: 'La consulta se ha actualizado correctamente.'
-          });
-        },
-        error => {
-          console.error('Error updating consulta:', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Hubo un problema al actualizar la consulta. Por favor, inténtalo de nuevo.'
-          });
-        }
-      );
+        );
     }
   }
+  
 
   deleteConsulta(id: number): void {
     Swal.fire({

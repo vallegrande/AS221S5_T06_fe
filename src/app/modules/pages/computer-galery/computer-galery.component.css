@@ -300,3 +300,34 @@ h1 {
 .blurred {
   filter: blur(10px);
 }
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group-text {
+  background-color: #ffffff;
+  border: none;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  color: #6c757d;
+}
+
+.input-group-text i {
+  font-size: 1.5rem;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #80bdff;
+}
+
+.input-group-text:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
